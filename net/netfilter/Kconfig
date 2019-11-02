@@ -686,6 +686,18 @@ config NETFILTER_XT_CONNMARK
 	ctmark), similarly to the packet mark (nfmark). Using this
 	target and match, you can set and match on this mark.
 
+config NETFILTER_XT_DSET
+	tristate 'dset match support'
+	depends on DOMAIN_SET
+	depends on NETFILTER_ADVANCED
+	help
+	  This option adds the "dset" match.
+
+	  Using this target and match, you can add/delete and match
+	  elements in the sets created by dset(8).
+
+	  To compile it as a module, choose M here.  If unsure, say N.
+
 config NETFILTER_XT_SET
 	tristate 'set target and match support'
 	depends on IP_SET
@@ -1540,6 +1552,8 @@ config NETFILTER_XT_MATCH_U32
 endif # NETFILTER_XTABLES
 
 endmenu
+
+source "net/netfilter/dset/Kconfig"
 
 source "net/netfilter/ipset/Kconfig"
 

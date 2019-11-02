@@ -14,6 +14,7 @@ MODULE_DESCRIPTION("Xtables: No-op match which can be tagged with a comment");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("ipt_comment");
 MODULE_ALIAS("ip6t_comment");
+MODULE_ALIAS("ebt_comment");
 
 static bool
 comment_mt(const struct sk_buff *skb, struct xt_action_param *par)

@@ -28,6 +28,7 @@ MODULE_ALIAS("ipt_set");
 MODULE_ALIAS("ip6t_set");
 MODULE_ALIAS("ipt_SET");
 MODULE_ALIAS("ip6t_SET");
+MODULE_ALIAS("ebt_set");
 
 static inline int
 match_set(ip_set_id_t index, const struct sk_buff *skb,
@@ -640,6 +641,26 @@ static struct xt_match set_matches[] __read_mostly = {
 	{
 		.name		= "set",
 		.family		= NFPROTO_IPV6,
+		.revision	= 4,
+		.match		= set_match_v4,
+		.matchsize	= sizeof(struct xt_set_info_match_v4),
+		.checkentry	= set_match_v4_checkentry,
+		.destroy	= set_match_v4_destroy,
+		.me		= THIS_MODULE
+	},
+	{
+		.name		= "set-src",
+		.family		= NFPROTO_UNSPEC,
+		.revision	= 4,
+		.match		= set_match_v4,
+		.matchsize	= sizeof(struct xt_set_info_match_v4),
+		.checkentry	= set_match_v4_checkentry,
+		.destroy	= set_match_v4_destroy,
+		.me		= THIS_MODULE
+	},
+	{
+		.name		= "set-dst",
+		.family		= NFPROTO_UNSPEC,
 		.revision	= 4,
 		.match		= set_match_v4,
 		.matchsize	= sizeof(struct xt_set_info_match_v4),
